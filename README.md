@@ -65,5 +65,3 @@ To run the tests from the imported collection:
 1. Select the **Flask Books API Collection** in Postman.
 2. Click the **Run** button to open the collection in the Collection Runner.
 3. Configure the environment (if necessary) and start the tests by clicking **Start Test**.
-
-This will execute all the tests defined in the Postman collection.
