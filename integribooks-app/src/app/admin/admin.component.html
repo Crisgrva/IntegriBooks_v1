@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-gray-100 p-4">
+  <div
+    class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-6"
+  >
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput(searchQuery)"
+      class="min-w-[350px] p-3 rounded-md border border-gray-300 focus:outline-none focus:ring focus:border-purple-300"
+      placeholder="Search for a book..."
+    />
+    <button
+      (click)="openAddBookModal()"
+      class="ml-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+    >
+      Add Book
+    </button>
+  </div>
+
+  <div class="bg-white p-4 rounded-lg shadow-md">
+    <table class="w-full table-auto">
+      <thead>
+        <tr class="text-left">
+          <th class="p-2">Cover</th>
+          <th class="p-2">Title</th>
+          <th class="p-2">Author</th>
+          <th class="p-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books" class="border-b">
+          <td class="p-2">
+            <img
+              [src]="book.cover"
+              alt="{{ book.title }} cover"
+              class="w-16 h-24 object-cover rounded-md"
+            />
+          </td>
+          <td class="p-2">{{ book.title }}</td>
+          <td class="p-2">{{ book.author }}</td>
+          <td class="p-2">
+            <button
+              (click)="openEditBookModal(book)"
+              class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 ms-2"
+            >
+              Edit
+            </button>
+            <button
+              (click)="deleteBook(book.id)"
+              class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 ms-2"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-add-book-modal
+    *ngIf="isAddBookModalOpen"
+    [bookToEdit]="selectedBook"
+    (bookAdded)="getBooks()"
+    (modalClosed)="isAddBookModalOpen = false; selectedBook = null"
+  ></app-add-book-modal>
+</div>

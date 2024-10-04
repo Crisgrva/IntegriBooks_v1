@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.0.27
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: books
+    ports:
+      - 32000:3306
+    volumes:
+      - db_data:/var/lib/mysql
+
+  api:
+    build:
+      context: ./integribooks-api
+    container_name: flask_api
+    restart: always
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: books
+    volumes:
+      - ./integribooks-api:/app
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mysql
+
+  frontend:
+    build:
+      context: ./integribooks-app
+      dockerfile: Dockerfile
+    container_name: angular_app
+    restart: always
+    ports:
+      - "80:4200"
+
+volumes:
+  db_data:

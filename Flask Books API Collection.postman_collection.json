@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "925d27cb-4dcb-4754-a9d5-68894b86248d",
+		"name": "Flask Books API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8528540"
+	},
+	"item": [
+		{
+			"name": "Get All Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test('Response is an array', function () {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Pre-request Book',",
+							"            author: 'Test Author',",
+							"            read: false,",
+							"            cover: 'test_cover.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recent Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Pre-request Book',",
+							"            author: 'Test Author',",
+							"            read: false,",
+							"            cover: 'test_cover.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/books/recent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"recent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200 and response is an array', function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('array');",
+							"    pm.expect(jsonData.length).to.be.above(1);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Pre-request Book',",
+							"            author: 'Test Author',",
+							"            read: false,",
+							"            cover: 'test_cover.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/books/search?title=Pre-request Book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"search"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Pre-request Book"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 201', function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Example Book\",\n    \"author\": \"Example Author\",\n    \"read\": false,\n    \"cover\": \"example_cover.png\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5001/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Crear un libro antes de ejecutar la prueba de eliminación",
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Book to Delete',",
+							"            author: 'Author for Deletion',",
+							"            read: false,",
+							"            cover: 'cover_to_delete.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"    // Extrae el id del libro creado y guárdalo como variable",
+							"    var jsonData = res.json();",
+							"    pm.variables.set('book_id', jsonData.id);",
+							"",
+							"    // Actualiza la URL del request de eliminación con el id del libro creado",
+							"    pm.request.url = 'http://localhost:5001/books/' + pm.variables.get('book_id');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Crear un libro antes de ejecutar la prueba de eliminación",
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Pre request book',",
+							"            author: 'Author for update',",
+							"            read: false,",
+							"            cover: 'cover_to_update.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"    // Extrae el id del libro creado y guárdalo como variable",
+							"    var jsonData = res.json();",
+							"    pm.variables.set('book_id', jsonData.id);",
+							"",
+							"    // Actualiza la URL del request de eliminación con el id del libro creado",
+							"    pm.request.url = 'http://localhost:5001/books/' + pm.variables.get('book_id');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Book\",\n    \"author\": \"Updated Author\",\n    \"read\": true,\n    \"cover\": \"updated_cover.png\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5001/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Crear un libro antes de ejecutar la prueba de eliminación",
+							"pm.sendRequest({",
+							"    url: 'http://localhost:5001/books',",
+							"    method: 'POST',",
+							"    header: { 'Content-Type': 'application/json' },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            title: 'Pre request book',",
+							"            author: 'Author for update',",
+							"            read: false,",
+							"            cover: 'cover_to_update.png'",
+							"        })",
+							"    }",
+							"}, function (err, res) {",
+							"    // Extrae el id del libro creado y guárdalo como variable",
+							"    var jsonData = res.json();",
+							"    pm.variables.set('book_id', jsonData.id);",
+							"",
+							"    // Actualiza la URL del request de eliminación con el id del libro creado",
+							"    pm.request.url = 'http://localhost:5001/books/' + pm.variables.get('book_id');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/books/{{book_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

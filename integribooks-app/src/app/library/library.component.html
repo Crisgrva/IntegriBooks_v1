@@ -1,0 +1,23 @@
+<div class="min-h-screen bg-gradient-to-b from-purple-100 to-indigo-100 p-4">
+  <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput(searchQuery)"
+      class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring focus:border-purple-300"
+      placeholder="Search for a book by title..."
+    />
+  </div>
+
+  <div class="flex flex-wrap justify-center py-4 gap-4 overflow-x-auto h-[80vh]">
+    <span *ngFor="let book of books">
+      <app-book
+        [cover]="book.cover"
+        [title]="book.title"
+        [author]="book.author"
+        [read]="book.read"
+      >
+      </app-book>
+    </span>
+  </div>
+</div>

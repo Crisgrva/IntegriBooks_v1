@@ -1,0 +1,39 @@
+<div class="h-screen w-64 bg-white shadow-lg flex flex-col justify-between">
+  <div>
+    <div class="flex items-center p-4">
+      <img src="/books.svg" alt="Logo" class="h-10 mr-3" />
+      <div>
+        <h4 class="text-xl font-semibold" style="color: #29007d">
+          IntegriBooks
+        </h4>
+      </div>
+    </div>
+    <nav class="mt-4">
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/"
+        routerLinkActive="bg-gray-100"
+        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 gap-2"
+      >
+        <ng-icon name="heroHome"></ng-icon>
+        Home
+      </a>
+      <a
+        routerLink="/library"
+        routerLinkActive="bg-gray-100"
+        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 gap-2"
+      >
+        <ng-icon name="heroBookOpen"></ng-icon>
+        Library
+      </a>
+      <a
+        routerLink="/admin"
+        routerLinkActive="bg-gray-100"
+        class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 gap-2"
+      >
+        <ng-icon name="heroCog6Tooth"></ng-icon>
+        Admin
+      </a>
+    </nav>
+  </div>
+</div>
