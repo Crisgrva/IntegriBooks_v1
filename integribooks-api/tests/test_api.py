@@ -60,7 +60,7 @@ class ApiTestCase(unittest.TestCase):
             'cover': 'http://example.com/cover.jpg'
         }), content_type='application/json')
 
-        response = self.client.get('/books/search?title=Test Book')
+        response = self.client.get('/books/search?q=Test Book')
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(json.loads(response.data), list)
 

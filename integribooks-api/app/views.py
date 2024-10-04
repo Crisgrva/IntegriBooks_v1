@@ -111,7 +111,7 @@ def get_recent_books():
     }
 })
 def search_books():
-    query = request.args.get('title')
+    query = request.args.get('q')
     if not query:
         return abort(400, "Title query parameter is required.")
 
