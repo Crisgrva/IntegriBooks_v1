@@ -18,7 +18,7 @@ To easily run the application using `docker-compose`, follow these steps:
 1. Clone the application repository:
 
     ```bash
-    git clone https://github.com/your_username/integribooks.git
+    git clone https://github.com/Crisgrva/IntegriBooks_v1
     cd integribooks
     ```
 
