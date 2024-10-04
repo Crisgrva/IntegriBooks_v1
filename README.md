@@ -28,8 +28,6 @@ To easily run the application using `docker-compose`, follow these steps:
     docker-compose up --build
     ```
 
-    This will start the application containers and their dependencies (such as the database) as specified in the `docker-compose.yml` file.
-
 3. Access the application in your browser at [http://localhost](http://localhost).
 
 4. Access the api swagger in your browser at [http://localhost:5001/apidocs](http://localhost:5001/apidocs).
@@ -41,10 +39,8 @@ To run the Python unit tests:
 1. Enter the container where the application is running (if using Docker Compose):
 
     ```bash
-    docker exec -it <container_name> /bin/bash
+    docker exec -it flask_api /bin/bash
     ```
-
-    **Note:** Replace `<container_name>` with the name of the application container.
 
 2. Once inside the container, run the tests with:
 
