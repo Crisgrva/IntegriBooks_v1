@@ -30,7 +30,9 @@ To easily run the application using `docker-compose`, follow these steps:
 
     This will start the application containers and their dependencies (such as the database) as specified in the `docker-compose.yml` file.
 
-3. Access the application in your browser at [http://localhost:5001](http://localhost:5001).
+3. Access the application in your browser at [http://localhost](http://localhost).
+
+4. Access the api swagger in your browser at [http://localhost:5001/apidocs](http://localhost:5001/apidocs).
 
 ## Running Python Unit Tests
 
