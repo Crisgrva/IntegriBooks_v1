@@ -177,7 +177,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5001/books/search?title=Pre-request Book",
+					"raw": "http://localhost:5001/books/search?q=Pre-request Book",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -189,7 +189,7 @@
 					],
 					"query": [
 						{
-							"key": "title",
+							"key": "q",
 							"value": "Pre-request Book"
 						}
 					]
